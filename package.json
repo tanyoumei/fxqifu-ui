@@ -1,0 +1,22 @@
+{
+  "name": "fxqifu-ui",
+  "version": "1.0.0",
+  "description": "飞象企服ui组件库 1.0.0版本",
+  "main": "lib/element-ui.common.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:file": "node build/bin/iconInit.js & node build/bin/build-entry.js & node build/bin/i18n.js & node build/bin/version.js",
+    "build:theme": "node build/bin/gen-cssfile && gulp build --gulpfile packages/theme-chalk/gulpfile.js && cp-cli packages/theme-chalk/lib lib/theme-chalk"
+  },
+  "files": [
+    "lib",
+    "src",
+    "packages",
+    "types"
+  ],
+  "author": "xiangxiang",
+  "license": "ISC",
+  "devDependencies": {
+    "vue": "^2.5.17"
+  }
+}
