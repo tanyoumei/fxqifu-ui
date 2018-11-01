@@ -1,11 +1,14 @@
 const path = require('path');
 const webpack = require('webpack');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
-const Components = require('../components.json');
+const Components = require('../packages/component.json');
+console.log(Components)
 const config = require('./config');
 
 const webpackConfig = {
+  mode: "production",
   entry: Components,
   output: {
     path: path.resolve(process.cwd(), './lib'),
@@ -16,13 +19,12 @@ const webpackConfig = {
   },
   resolve: {
     extensions: ['.js', '.vue', '.json'],
-    alias: config.alias,
+    // alias: config.alias,
     modules: ['node_modules']
   },
   externals: config.externals,
   module: {
-    rules: [
-      {
+    rules: [{
         test: /\.(jsx?|babel|es6)$/,
         include: process.cwd(),
         exclude: config.jsexclude,
@@ -78,6 +80,7 @@ const webpackConfig = {
     ]
   },
   plugins: [
+    new VueLoaderPlugin(),
     new ProgressBarPlugin(),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('production')

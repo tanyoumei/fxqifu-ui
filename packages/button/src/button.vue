@@ -1,3 +1,4 @@
+<style src="./button.scss" lang="sass"></style>
 <template>
   <button class="el-button" @click="handleClick" :disabled="buttonDisabled || loading" :autofocus="autofocus" :type="nativeType"
     :class="[type ? 'el-button--' + type : '', buttonSize ? 'el-button--' + buttonSize : '',
@@ -10,13 +11,12 @@
     }
   ]">
     <i class="el-icon-loading" v-if="loading"></i>
-    <i : class="icon" v-if="icon && !loading"></i>
+    <!-- <i : class="icon" v-if="icon && !loading"></i> -->
     <span v-if="$slots.default">
       <slot></slot>
     </span>
   </button>
 </template>
-<style src="button.scss" type="scss"></style>
 <script>
   export default {
     name: 'FxButton',

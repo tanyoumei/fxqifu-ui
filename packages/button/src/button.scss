@@ -1,8 +1,8 @@
-// @charset "UTF-8";
-// @import "common/var";
-// @import "mixins/button";
-// @import "mixins/mixins";
-// @import "mixins/utils";
+@charset "UTF-8";
+@import "../../theme/src/common/var";
+@import "../../theme/src/mixins/button";
+@import "../../theme/src/mixins/mixins";
+@import "../../theme/src/mixins/utils";
 
 @include b(button) {
   display: inline-block;
@@ -128,6 +128,7 @@
     padding: $--button-padding-vertical;
   }
 
+  // 飞象定制组件
   @include m(primary) {
     @include button-variant($--button-primary-color, $--button-primary-fill, $--button-primary-border);
   }

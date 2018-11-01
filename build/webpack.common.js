@@ -1,19 +1,21 @@
 const path = require('path');
 const webpack = require('webpack');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
 const config = require('./config');
 
 module.exports = {
+  mode: "production",
   entry: {
     app: ['./src/index.js']
   },
   output: {
     path: path.resolve(process.cwd(), './lib'),
     publicPath: '/dist/',
-    filename: 'element-ui.common.js',
+    filename: 'fxqifu-ui.common.js',
     chunkFilename: '[id].js',
-    libraryTarget: 'commonjs2'
+    libraryTarget: 'commonjs2' //webpack 编译后的js，如何再被其他模块引用？ 导出的组件的js 最后都会赋值给 module.exports，供其他模块引用。
   },
   resolve: {
     extensions: ['.js', '.vue', '.json'],
@@ -22,8 +24,7 @@ module.exports = {
   },
   externals: config.externals,
   module: {
-    rules: [
-      {
+    rules: [{
         test: /\.(jsx?|babel|es6)$/,
         include: process.cwd(),
         exclude: config.jsexclude,
@@ -78,7 +79,11 @@ module.exports = {
       }
     ]
   },
+  optimization: {
+    minimize: false
+  },
   plugins: [
+    new VueLoaderPlugin(),
     new ProgressBarPlugin(),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('production')
